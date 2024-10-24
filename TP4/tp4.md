@@ -169,7 +169,6 @@ default via 10.1.1.254 dev enp0s3 proto static metric 100
 ```
 
 
-
 - testez des ping entre les réseaux
 
 ```
@@ -284,3 +283,595 @@ PING ynov.com (172.67.74.226) 56(84) bytes of data.
 
 ## 2. Adressage topologie 3
 
+
+🌞  Vous devez me rendre le show running-config de tous les équipements
+
+## switch 1 
+```
+IOU1#sh running-config
+Building configuration...
+
+Current configuration : 1691 bytes
+!
+! Last configuration change at 12:51:48 UTC Thu Oct 24 2024
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname IOU1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+logging discriminator EXCESS severity drops 6 msg-body drops EXCESSCOLL
+logging buffered 50000
+logging console discriminator EXCESS
+!
+no aaa new-model
+!
+!
+!
+!
+!
+no ip icmp rate-limit unreachable
+!
+!
+!
+no ip domain-lookup
+no ip cef
+no ipv6 cef
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Ethernet0/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Ethernet0/1
+ switchport access vlan 10
+ switchport mode access
+!
+interface Ethernet0/2
+ switchport access vlan 10
+ switchport mode access
+!
+interface Ethernet0/3
+ switchport access vlan 20
+ switchport mode access
+!
+interface Ethernet1/0
+ switchport access vlan 30
+ switchport mode access
+!
+interface Ethernet1/1
+!
+interface Ethernet1/2
+!
+interface Ethernet1/3
+!
+interface Ethernet2/0
+!
+interface Ethernet2/1
+!
+interface Ethernet2/2
+!
+interface Ethernet2/3
+!
+interface Ethernet3/0
+!
+interface Ethernet3/1
+!
+interface Ethernet3/2
+!
+interface Ethernet3/3
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip forward-protocol nd
+!
+ip tcp synwait-time 5
+ip http server
+!
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+!
+end
+```
+## switch 2
+```
+IOU1#sh running-config
+Building configuration...
+
+Current configuration : 1660 bytes
+!
+! Last configuration change at 14:21:24 UTC Thu Oct 24 2024
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname IOU1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+logging discriminator EXCESS severity drops 6 msg-body drops EXCESSCOLL
+logging buffered 50000
+logging console discriminator EXCESS
+!
+no aaa new-model
+!
+!
+!
+!
+!
+no ip icmp rate-limit unreachable
+!
+!
+!
+no ip domain-lookup
+no ip cef
+no ipv6 cef
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Ethernet0/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Ethernet0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Ethernet0/2
+ switchport access vlan 10
+ switchport mode access
+!
+interface Ethernet0/3
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Ethernet1/0
+!
+interface Ethernet1/1
+!
+interface Ethernet1/2
+!
+interface Ethernet1/3
+!
+interface Ethernet2/0
+!
+interface Ethernet2/1
+!
+interface Ethernet2/2
+!
+interface Ethernet2/3
+!
+interface Ethernet3/0
+!
+interface Ethernet3/1
+!
+interface Ethernet3/2
+!
+interface Ethernet3/3
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip forward-protocol nd
+!
+ip tcp synwait-time 5
+ip http server
+!
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+!
+end
+```
+
+
+## switch 3
+```
+IOU2#sh running-config
+Building configuration...
+
+Current configuration : 1691 bytes
+!
+! Last configuration change at 14:16:48 UTC Thu Oct 24 2024
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname IOU2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+logging discriminator EXCESS severity drops 6 msg-body drops EXCESSCOLL
+logging buffered 50000
+logging console discriminator EXCESS
+!
+no aaa new-model
+!
+!
+!
+!
+!
+no ip icmp rate-limit unreachable
+!
+!
+!
+no ip domain-lookup
+no ip cef
+no ipv6 cef
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Ethernet0/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Ethernet0/1
+ switchport access vlan 10
+ switchport mode access
+!
+interface Ethernet0/2
+ switchport access vlan 10
+ switchport mode access
+!
+interface Ethernet0/3
+ switchport access vlan 10
+ switchport mode access
+!
+interface Ethernet1/0
+ switchport access vlan 10
+ switchport mode access
+!
+interface Ethernet1/1
+!
+interface Ethernet1/2
+!
+interface Ethernet1/3
+!
+interface Ethernet2/0
+!
+interface Ethernet2/1
+!
+interface Ethernet2/2
+!
+interface Ethernet2/3
+!
+interface Ethernet3/0
+!
+interface Ethernet3/1
+!
+interface Ethernet3/2
+!
+interface Ethernet3/3
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip forward-protocol nd
+!
+ip tcp synwait-time 5
+ip http server
+!
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+!
+end
+```
+## Le routeur
+```
+R1#sh running-config
+Building configuration...
+
+Current configuration : 1317 bytes
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+no ip icmp rate-limit unreachable
+!
+!
+ip cef
+no ip domain lookup
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex half
+!
+interface FastEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 10.1.10.254 255.255.255.0
+!
+interface FastEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 10.1.20.254 255.255.255.0
+!
+interface FastEthernet0/0.30
+ encapsulation dot1Q 30
+ ip address 10.1.30.254 255.255.255.0
+!
+interface FastEthernet1/0
+ ip address dhcp
+ duplex auto
+ speed auto
+!
+interface FastEthernet1/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface FastEthernet2/0
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface FastEthernet2/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+!
+no cdp log mismatch duplex
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+gatekeeper
+ shutdown
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ stopbits 1
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ stopbits 1
+line vty 0 4
+ login
+!
+!
+end
+```
+
+🌞  Mettre en place un serveur DHCP dans le nouveau bâtiment
+```
+PC3> sh ip
+
+NAME        : PC3[1]
+IP/MASK     : 10.1.10.12/24
+GATEWAY     : 10.1.10.254
+DNS         : 1.1.1.1
+DHCP SERVER : 10.1.10.253
+DHCP LEASE  : 512, 600/300/525
+DOMAIN NAME : srv.world
+MAC         : 00:50:79:66:68:03
+LPORT       : 20032
+RHOST:PORT  : 127.0.0.1:20033
+MTU         : 1500
+```
+```
+PC3> ping ynov.com
+ynov.com resolved to 104.26.10.233
+
+84 bytes from 104.26.10.233 icmp_seq=1 ttl=52 time=30.286 ms
+84 bytes from 104.26.10.233 icmp_seq=2 ttl=52 time=27.464 ms
+```
+
+
+🌞  Vérification
+- un client récupère une IP en DHCP
+
+```
+PC4> dhcp
+DDORA IP 10.1.10.14/24 GW 10.1.10.254
+```
+
+- il peut ping le serveur Web
+```
+PC4> ping 10.1.30.1
+
+84 bytes from 10.1.30.1 icmp_seq=1 ttl=63 time=19.232 ms
+84 bytes from 10.1.30.1 icmp_seq=2 ttl=63 time=15.487 ms
+84 bytes from 10.1.30.1 icmp_seq=3 ttl=63 time=13.523 ms
+```
+- il peut ping 1.1.1.1
+
+```
+PC4> ping 1.1.1.1
+
+1.1.1.1 icmp_seq=1 timeout
+84 bytes from 1.1.1.1 icmp_seq=2 ttl=52 time=24.702 ms
+84 bytes from 1.1.1.1 icmp_seq=3 ttl=52 time=26.016 ms
+84 bytes from 1.1.1.1 icmp_seq=4 ttl=52 time=25.275 ms
+```
+- il peut ping ynov.com
+
+```
+PC4> ping ynov.com
+ynov.com resolved to 104.26.10.233
+
+84 bytes from 104.26.10.233 icmp_seq=1 ttl=52 time=38.837 ms
+84 bytes from 104.26.10.233 icmp_seq=2 ttl=52 time=22.704 ms
+84 bytes from 104.26.10.233 icmp_seq=3 ttl=52 time=27.551 ms
+```
