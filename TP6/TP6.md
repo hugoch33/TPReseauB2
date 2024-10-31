@@ -196,3 +196,15 @@ Et3/3               Desg FWD 100       128.16   P2p
 
 
 ## II. OSPF
+
+
+🌞 Montez la topologie
+
+🌞 Configurer OSPF sur tous les routeurs
+
+
+## R1
+``` 
+```
+
+## R2
